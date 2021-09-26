@@ -12,6 +12,9 @@ const load = {
 
 loads.set(loads.flightNumber, load);
 
+function existsLoadWithId(loadId) {
+    return loads.has(loadId);
+}
 
 function getAllLoads() {
     return Array.from(loads.values());
@@ -28,7 +31,13 @@ function addNewLoad(load) {
     );
 };
 
+function deleteLoadById(loadId) {
+    loads.delete(loadId);
+}
+
 module.exports = {
+    existsLoadWithId,
     getAllLoads,
     addNewLoad,
+    deleteLoadById,
 };
