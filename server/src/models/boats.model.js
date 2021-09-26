@@ -1,3 +1,9 @@
 const boats = [];
 
-module.exports = boats;
+function getAllBoats() {
+    return boats;
+}
+
+module.exports = {
+    getAllBoats,
+};

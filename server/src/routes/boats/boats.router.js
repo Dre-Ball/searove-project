@@ -1,12 +1,12 @@
 const express = require('express');
 
 const {
-    getAllBoats
+    httpGetAllBoats
 } = require('./boats.controller');
 
 const boatsRouter = express.Router();
 
-boatsRouter.get('/boats', getAllBoats);
+boatsRouter.get('/', httpGetAllBoats);
 
 
 module.exports = boatsRouter;

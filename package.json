@@ -1,0 +1,24 @@
+{
+  "name": "searove-project",
+  "version": "1.0.0",
+  "description": "Searove --------- ***Mock company that offers boat rentals for cargo transportation***",
+  "main": "index.js",
+  "scripts": {
+    "install-server": "npm install --prefix server",
+    "install": "npm run install-server",
+    "server": "npm run watch --prefix server",
+    "watch": "npm run server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dre-Ball/searove-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dre-Ball/searove-project/issues"
+  },
+  "homepage": "https://github.com/Dre-Ball/searove-project#readme"
+}
