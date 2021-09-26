@@ -1,3 +1,5 @@
+// const loads = require('./loads.mongo')
+
 const loads = new Map();
 
 let latestLoadNumber = 100;
@@ -14,7 +16,7 @@ loads.set(loads.flightNumber, load);
 
 function existsLoadWithId(loadId) {
     return loads.has(loadId);
-}
+};
 
 function getAllLoads() {
     return Array.from(loads.values());
