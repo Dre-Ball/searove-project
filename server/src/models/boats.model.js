@@ -1,9 +1,10 @@
-// const boats = require('./boats.mongo');
+const boats = require('./boats.mongo');
 
-const boats = [];
-
-function getAllBoats() {
-    return boats;
+async function getAllBoats() {
+    return await boats.find({}, {
+        '_id': 0,
+        '__v': 0,
+    });
 }
 
 module.exports = {

@@ -20,7 +20,7 @@ const loadsSchema = new mongoose.Schema({
     },
     customers: [ String ],
     loadedOnBoat: {
-        type: String,
+        type: Boolean,
         required: true,
         default: false,
     }

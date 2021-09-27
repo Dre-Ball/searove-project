@@ -5,11 +5,11 @@ const {
     deleteLoadById,
 } = require('../../models/loads.model');
 
-function httpGetAllLoads(req, res) {
-    return res.status(200).json(getAllLoads());
+async function httpGetAllLoads(req, res) {
+    return res.status(200).json(await getAllLoads());
 }
 
-function httpAddNewLoad(req, res) {
+async function httpAddNewLoad(req, res) {
     const load = req.body;
 
     if (!load.volume || !load.content || !load.createdDate){
@@ -25,23 +25,23 @@ function httpAddNewLoad(req, res) {
         });
     }
 
-    addNewLoad(load);
+    await addNewLoad(load);
+    console.log(load);
     return res.status(201).json(load);
 }
 
-function httpDeleteLoad( req, res) {
+async function httpDeleteLoad( req, res) {
     const loadId = Number(req.params.id);
 
-    if (!existsLoadWithId(loadId)) {
+    const existsLoad = await existsLoadWithId(loadId);
+    if (!existsLoad) {
         return res.status(404).json({
             error: 'Load does not exist',
         });
     }
 
-    deleteLoadById(loadId);
-    return res.status(200).json({
-        error: 'Load removed'
-    });
+    const deleted = await deleteLoadById(loadId);
+    return res.status(200).json(deleted);
 }
 
 module.exports = {

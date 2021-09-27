@@ -1,8 +1,9 @@
-// const loads = require('./loads.mongo')
+const loadsDatabase = require('./loads.mongo')
+const boats = require('./boats.mongo');
+
+const DEFAULT_LOAD_NUMBER = 100;
 
 const loads = new Map();
-
-let latestLoadNumber = 100;
 
 const load = {
     loadNumber: 100,
@@ -12,30 +13,58 @@ const load = {
     createdDate: new Date('2022-09-01')
 };
 
-loads.set(loads.flightNumber, load);
+saveLoad(load);
 
-function existsLoadWithId(loadId) {
-    return loads.has(loadId);
+async function existsLoadWithId(loadId) {
+    return await loadsDatabase.findOne({
+        loadNumber: loadId,
+    });
 };
 
-function getAllLoads() {
-    return Array.from(loads.values());
-};
+async function getLatestLoadNumber() {
+    const latestLoad = await loadsDatabase
+        .findOne()
+        .sort('-loadNumber');
 
-function addNewLoad(load) {
-    latestLoadNumber ++;
-    loads.set(
-        latestLoadNumber, 
-        Object.assign(load, {
-            customers: ['Best Buy', 'Gamestop'],
-            loadNumber: latestLoadNumber,
-        })
-    );
-};
+    if (!latestLoad) {
+        return DEFAULT_LOAD_NUMBER;
+    }
 
-function deleteLoadById(loadId) {
-    loads.delete(loadId);
+    return latestLoad.loadNumber;
 }
+
+async function getAllLoads() {
+    return await loadsDatabase.find({}, {
+        '_id': 0,
+        '__v': 0,
+    });
+};
+
+async function saveLoad(load) {
+    await loadsDatabase.findOneAndUpdate({
+        loadNumber: load.loadNumber,
+    }, load, {
+        upsert: true,
+    });
+}
+
+async function addNewLoad(load) {
+    const newLoadNumber = await getLatestLoadNumber() + 1;
+
+    const newLoad = Object.assign(load, {
+        loadedOnBoat: false,
+        customers: ['Best Buy', 'Gamestop'],
+        loadNumber: newLoadNumber
+    });
+
+    await saveLoad(newLoad);
+}
+
+async function deleteLoadById(loadId) {
+    return await loadsDatabase.deleteOne({
+        loadNumber: loadId,
+    });
+};
 
 module.exports = {
     existsLoadWithId,
