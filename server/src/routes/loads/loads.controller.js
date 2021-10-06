@@ -1,3 +1,5 @@
+const { logger } = require('../../winston/winston');
+
 const { 
     getAllLoads,
     addNewLoad,
@@ -6,6 +8,8 @@ const {
 } = require('../../models/loads.model');
 
 async function httpGetAllLoads(req, res) {
+    logger.info('SUCCESS in retrieving link');
+    logger.debug('DEBUG');
     return res.status(200).json(await getAllLoads());
 }
 
@@ -35,9 +39,11 @@ async function httpDeleteLoad( req, res) {
 
     const existsLoad = await existsLoadWithId(loadId);
     if (!existsLoad) {
-        return res.status(404).json({
+            res.status(404).json({
             error: 'Load does not exist',
         });
+
+        return logger.error('Something went wrong!');
     }
 
     const deleted = await deleteLoadById(loadId);

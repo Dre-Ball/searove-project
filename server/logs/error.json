@@ -1,0 +1,7 @@
+{"@timestamp":"2021-10-06T22:29:07.531Z","log.level":"error","message":"Something went wrong!","ecs":{"version":"1.6.0"}}
+{"@timestamp":"2021-10-06T22:29:14.342Z","log.level":"error","message":"Something went wrong!","ecs":{"version":"1.6.0"}}
+{"@timestamp":"2021-10-06T22:29:25.182Z","log.level":"error","message":"Something went wrong!","ecs":{"version":"1.6.0"}}
+{"@timestamp":"2021-10-06T22:36:48.237Z","log.level":"error","message":"Something went wrong!","ecs":{"version":"1.6.0"}}
+{"@timestamp":"2021-10-06T22:37:07.316Z","log.level":"error","message":"Something went wrong!","ecs":{"version":"1.6.0"}}
+{"@timestamp":"2021-10-06T22:37:27.194Z","log.level":"error","message":"Something went wrong!","ecs":{"version":"1.6.0"}}
+{"@timestamp":"2021-10-06T22:37:52.621Z","log.level":"error","message":"Something went wrong!","ecs":{"version":"1.6.0"}}

@@ -3,7 +3,6 @@ const boats = require('./boats.mongo');
 
 const DEFAULT_LOAD_NUMBER = 100;
 
-const loads = new Map();
 
 const load = {
     loadNumber: 100,
@@ -31,7 +30,7 @@ async function getLatestLoadNumber() {
     }
 
     return latestLoad.loadNumber;
-}
+};
 
 async function getAllLoads() {
     return await loadsDatabase.find({}, {

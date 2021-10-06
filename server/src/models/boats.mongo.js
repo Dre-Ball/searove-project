@@ -17,11 +17,13 @@ const boatsSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    customers: [ String ],
     hasLoad: {
-        type: String,
+        type: Boolean,
         default: false,
         required: true,
     }
 });
 
+// Connects boatsSchema with "boats" collection
 module.exports = mongoose.model('Boat', boatsSchema);
