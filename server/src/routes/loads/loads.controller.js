@@ -1,14 +1,12 @@
-const { logger } = require('../../winston/winston');
-
 const { 
     getAllLoads,
     addNewLoad,
     existsLoadWithId,
     deleteLoadById,
 } = require('../../models/loads.model');
+const { logger } = require('../../winston/winston');
 
 async function httpGetAllLoads(req, res) {
-    logger.info('SUCCESS in retrieving link');
     logger.debug('DEBUG');
     return res.status(200).json(await getAllLoads());
 }
@@ -34,7 +32,7 @@ async function httpAddNewLoad(req, res) {
     return res.status(201).json(load);
 }
 
-async function httpDeleteLoad( req, res) {
+async function httpDeleteLoad( req, res ) {
     const loadId = Number(req.params.id);
 
     const existsLoad = await existsLoadWithId(loadId);

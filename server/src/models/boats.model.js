@@ -33,7 +33,7 @@ async function getLatestBoatNumber() {
 
 
 async function getAllBoats() {
-    return await boats.find({}, {
+    return await boatsDatabase.find({}, {
         '_id': 0,
         '__v': 0,
     });
@@ -50,7 +50,7 @@ async function saveBoat(boat) {
 async function addNewBoat(boat) {
     const newBoatNumber = await getLatestBoatNumber() + 1;
 
-    const newBoat = Object.assign(load, {
+    const newBoat = Object.assign(boat, {
         hasLoad: false,
         customers: ['Best Buy', 'Gamestop'],
         boatNumber: newBoatNumber

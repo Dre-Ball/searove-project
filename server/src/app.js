@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const { morganMiddleware } = require('./morgan/morgan');
-const ecsFormat = require('@elastic/ecs-morgan-format');
 
 const boatsRouter = require('./routes/boats/boats.router');
 const loadsRouter = require('./routes/loads/loads.router');
