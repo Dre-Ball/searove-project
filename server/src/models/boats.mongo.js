@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const boatsSchema = new mongoose.Schema({
-    boatNumber: {
-        type: Number,
-        required: true,
-    },
     boatName: {
         type: String,
         required: true,
@@ -17,12 +13,10 @@ const boatsSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    customers: [ String ],
-    hasLoad: {
-        type: Boolean,
-        default: false,
+    boatPrice: {
+        type: Number,
         required: true,
-    }
+    },
 });
 
 // Connects boatsSchema with "boats" collection

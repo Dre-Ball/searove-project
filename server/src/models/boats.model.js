@@ -1,36 +1,36 @@
+const fs = require('fs');
+const path = require('path');
+const parse = require('csv-parse');
+
 const boatsDatabase = require('./boats.mongo');
 
-const DEFAULT_BOAT_NUMBER = 1000
-
-
-const boat = {
-    boatNumber: 1000,
-    boatName: 'Odyssey',
-    boatType: 'Cruise',
-    boatLength: 360,
-};
-
-saveBoat(boat);
-
-
-async function existsBoatWithId(boatId) {
-    return await boatsDatabase.findOne({
-        boatNumber: boatId,
-    });
+function isBoatAvailable(boat) {
+    return boat['under_construction'] == 'FALSE'
+        && boat['boat_price'] > 100; 
 }
 
-async function getLatestBoatNumber() {
-    const latestBoat = await boatsDatabase
-        .findOne()
-        .sort('-boatNumber');
-
-    if (!latestBoat) {
-        return DEFAULT_BOAT_NUMBER;
-    }
-
-    return latestBoat.boatNumber;
-};
-
+function loadBoatsData() {
+    return new Promise((resolve, reject) => {
+        fs.createReadStream(path.join(__dirname, '..', '..', 'data', 'boats_preinventory.csv'))
+        .pipe(parse({
+            columns: true,
+        }))
+        .on('data', async (data) => {
+            if (isBoatAvailable(data)) {
+                // insert + update = upsert
+                saveBoat(data);
+            }
+        })
+        .on('error', (err) => {
+            console.log(err);
+            reject(err);
+        })
+        .on('end', async () => {
+            const countBoatsFound = (await getAllBoats()).length;
+            console.log(`${countBoatsFound} boats ready for use!`);
+        });
+    })
+}
 
 async function getAllBoats() {
     return await boatsDatabase.find({}, {
@@ -40,35 +40,26 @@ async function getAllBoats() {
 };
 
 async function saveBoat(boat) {
-    await boatsDatabase.findOneAndUpdate({
-        boatNumber: boat.boatNumber,
-    }, boat, {
-        upsert: true,
-    });
+    try {
+        await boatsDatabase.updateOne({
+            boatName: boat.boat_name,
+            boatType: boat.boat_type,
+            boatLength: boat.boat_length,
+            boatPrice: boat.boat_price,
+        }, {
+            boatName: boat.boat_name,
+            boatType: boat.boat_type,
+            boatLength: boat.boat_length,
+            boatPrice: boat.boat_price,
+        }, {
+            upsert: true,
+        });
+    } catch(err) {
+        console.error(`${err}: Boat not saved`);
+    }
 }
 
-async function addNewBoat(boat) {
-    const newBoatNumber = await getLatestBoatNumber() + 1;
-
-    const newBoat = Object.assign(boat, {
-        hasLoad: false,
-        customers: ['Best Buy', 'Gamestop'],
-        boatNumber: newBoatNumber
-    });
-
-    await saveBoat(newBoat);
-};
-
-async function deleteBoatById(boatId) {
-    return await boatsDatabase.deleteOne({
-        boatNumber: boatId,
-    });
-};
-
-
 module.exports = {
-    existsBoatWithId,
+    loadBoatsData,
     getAllBoats,
-    addNewBoat,
-    deleteBoatById,
 };

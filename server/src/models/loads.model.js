@@ -3,7 +3,6 @@ const boats = require('./boats.mongo');
 
 const DEFAULT_LOAD_NUMBER = 100;
 
-
 const load = {
     loadNumber: 100,
     volume: 5,
@@ -14,8 +13,12 @@ const load = {
 
 saveLoad(load);
 
+async function findLoad(filter) {
+    return await loadsDatabase.findOne(filter);
+};
+
 async function existsLoadWithId(loadId) {
-    return await loadsDatabase.findOne({
+    return await findLoad({
         loadNumber: loadId,
     });
 };
@@ -66,6 +69,7 @@ async function deleteLoadById(loadId) {
 };
 
 module.exports = {
+    findLoad,
     existsLoadWithId,
     getAllLoads,
     addNewLoad,

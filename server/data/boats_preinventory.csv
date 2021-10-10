@@ -1,0 +1,25 @@
+boat_name,boat_type,boat_length,boat_price,under_construction
+Marlin,fishing,30,200,FALSE
+Liberty,airboat,16,125,FALSE
+Firefly,deck,23,1900,TRUE
+Pegasus,bowrider,25,750,FALSE
+Black Pearl,catamaran,40,500,FALSE
+Relentless,cuddy cabins,28,400,TRUE
+Blue Moon,sailboat,25,1500,FALSE
+Dream,house,70,1350,FALSE
+Breeze,trawler,90,700,TRUE
+Grace,cruiser,13,1450,FALSE
+Pura Vida,megayacht,260,5000,FALSE
+Odyssey,yacht,160,3000,FALSE
+Freedom,speedboat,30,950,FALSE
+Mojo,runabout,76,800,TRUE
+Tailspin,jet,22,95,FALSE
+Foxtales,ski,20,95,FALSE
+Lazy Daze,banana,23,75,FALSE
+Chance,lifeboat,47,150,TRUE
+Bail Out,pontoon,18,1200,TRUE
+Powerrider,tug boat,200,1700,FALSE
+Calypso,raft,14,95,FALSE
+Apollo,ferry,155,1150,FALSE
+Serenity,canoe,17,80,TRUE
+Dreamer,log,13,2000,FALSE
