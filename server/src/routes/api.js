@@ -1,11 +1,11 @@
 const express = require('express');
 
 const boatsRouter = require('./boats/boats.router');
-const loadsRouter = require('./loads/loads.router');
+const tripsRouter = require('./trips/trips.router');
 
 const api = express.Router();
 
 api.use('/boats', boatsRouter);
-api.use('/loads', loadsRouter);
+api.use('/trips', tripsRouter);
 
 module.exports = api;

@@ -5,7 +5,7 @@ const {
     mongoDisconnect,
  } = require('../../services/mongo');
 
-describe('Loads API', () => {
+describe('Trips API', () => {
     beforeAll( async () => {
         await mongoConnect();
     });
@@ -14,16 +14,16 @@ describe('Loads API', () => {
         await mongoDisconnect();
     });
 
-    describe('Test GET /loads', () => {
+    describe('Test GET /trips', () => {
         test('It should respond with 200 success', async () => {
             const response = await request(app)
-            .get('/v1/loads')
+            .get('/v1/trips')
             .expect('Content-Type', /json/)
             .expect(200);
         });
     });
     
-    describe('Test POST /loads', () => {
+    describe('Test POST /trips', () => {
         test('It should respond with 200 success', () => {
     
         });

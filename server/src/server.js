@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 8080;
 const server = http.createServer(app);
 
 async function startServer() {
-    await mongoConnect();
+    await mongoConnect();   
     await loadBoatsData();
 
     server.listen(PORT, () => {

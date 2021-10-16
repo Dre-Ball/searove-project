@@ -28,6 +28,7 @@ function loadBoatsData() {
         .on('end', async () => {
             const countBoatsFound = (await getAllBoats()).length;
             console.log(`${countBoatsFound} boats ready for use!`);
+            resolve();
         });
     })
 }

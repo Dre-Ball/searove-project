@@ -5,3 +5,5 @@
 {"@timestamp":"2021-10-06T22:37:07.316Z","log.level":"error","message":"Something went wrong!","ecs":{"version":"1.6.0"}}
 {"@timestamp":"2021-10-06T22:37:27.194Z","log.level":"error","message":"Something went wrong!","ecs":{"version":"1.6.0"}}
 {"@timestamp":"2021-10-06T22:37:52.621Z","log.level":"error","message":"Something went wrong!","ecs":{"version":"1.6.0"}}
+{"@timestamp":"2021-10-14T08:43:25.683Z","log.level":"error","message":"Something went wrong!","ecs":{"version":"1.6.0"}}
+{"@timestamp":"2021-10-14T08:43:27.438Z","log.level":"error","message":"Something went wrong!","ecs":{"version":"1.6.0"}}
