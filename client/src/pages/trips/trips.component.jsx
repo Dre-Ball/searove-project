@@ -1,11 +1,20 @@
 import React from 'react';
+import DataTable from 'react-data-table-component';
 
 import './trips.styles.scss';
 
-const TripsPage = () => (
-    <div className='tripspage'>
-        <h1>trips page</h1>
-    </div>
-);
+
+const columns = [];
+
+const data = [];
+
+const TripsPage = () => {
+    return (
+        <DataTable 
+            columns={columns}
+            data={data}
+        />
+    );
+};
 
 export default TripsPage;
