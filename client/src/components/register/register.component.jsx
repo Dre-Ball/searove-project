@@ -25,7 +25,7 @@ class Register extends React.Component {
         event.preventDefault();
 
         const { displayName, email, password, confirmPassword } = this.state;
-        
+
         if(password !== confirmPassword) {
             alert("passwords don't match");
             return;
@@ -33,6 +33,9 @@ class Register extends React.Component {
 
         try {
             const { user } = await createUserWithEmailAndPassword(auth, email, password);
+            
+            //connect with mongodb
+            //await createUser(user,displayName)
             
             this.setState({
                 displayName:'',
