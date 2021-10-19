@@ -5,11 +5,11 @@ import Register from '../../components/register/register.component';
 
 import './sign-in-and-register.styles.scss';
 
-const SignInAndRegister = () => (
+const SignInAndRegisterPage = () => (
     <div className='sign-in-and-register'>
         <SignIn />
         <Register />
     </div>
 );
 
-export default SignInAndRegister;
+export default SignInAndRegisterPage;
