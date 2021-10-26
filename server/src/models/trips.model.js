@@ -38,8 +38,8 @@ async function getLatestTripNumber() {
     return latestTrip.tripNumber;
 };
 
-async function getAllTrips() {
-    return await tripsDatabase.find({}, {
+async function getAllTrips(auth) {
+    return await tripsDatabase.find({ customer: `${auth.uid}` }, {
         '_id': 0,
         '__v': 0,
     });
@@ -53,11 +53,12 @@ async function saveTrip(trip) {
     });
 }
 
-async function addNewTrip(trip) {
+async function addNewTrip(trip, auth) {
     const newTripNumber = await getLatestTripNumber() + 1;
+    console.log(auth)
 
     const newTrip = Object.assign(trip, {
-        customer: [],
+        customer: [auth.uid],
         tripNumber: newTripNumber,
     });
 

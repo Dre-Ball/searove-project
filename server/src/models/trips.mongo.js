@@ -21,7 +21,8 @@ const tripsSchema = new mongoose.Schema({
     tripBoat: {
         type: String,
         required: true,
-    }
+    },
+    customer: [],
 });
 
 // Connects tripsSchema with "trips" collection

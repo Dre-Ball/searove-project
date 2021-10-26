@@ -23,6 +23,7 @@
   "homepage": "https://github.com/Dre-Ball/searove-project#readme",
   "dependencies": {
     "axios": "^0.22.0",
-    "csv-parse": "^4.16.3"
+    "csv-parse": "^4.16.3",
+    "firebase-admin": "^10.0.0"
   }
 }

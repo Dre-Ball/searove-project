@@ -8,8 +8,16 @@ const {
 const { logger } = require('../../winston/winston');
 
 async function httpGetAllTrips(req, res) {
+    const auth = req.currentUser;
     logger.debug('DEBUG');
-    return res.status(200).json(await getAllTrips());
+
+    if (auth) {
+        return res.status(200).json(await getAllTrips(auth));
+    } else {
+        return res.status(403).json({
+            error: 'NOT AUTHORIZED',
+        })
+    }
 }
 
 async function httpGetOneTrip(req, res) {
@@ -29,23 +37,33 @@ async function httpGetOneTrip(req, res) {
 
 async function httpAddNewTrip(req, res) {
     const trip = req.body;
+    const auth = req.currentUser;
+    
+    if (auth) {
+        console.log('AUTHENTICATED!');
 
-    if (!trip.tripName || !trip.tripVolume || !trip.tripBoat || !trip.tripDate){
-        return res.status(400).json({
-            error: 'Missing required properties'
-        });
+        if (!trip.tripName || !trip.tripVolume || !trip.tripBoat || !trip.tripDate){
+            return res.status(400).json({
+                error: 'Missing required properties'
+            });
+        }
+    
+        trip.tripDate = new Date(trip.tripDate);
+        if (isNaN(trip.tripDate)) {
+            return res.status(400).json({
+                error: 'Invalid trip date',
+            });
+        }
+    
+        await addNewTrip(trip, auth);
+        console.log(trip);
+        return res.status(201).json(trip);
+
+    } else {
+        return res.status(403).json({
+            error: 'NOT AUTHORIZED',
+        })
     }
-
-    trip.tripDate = new Date(trip.tripDate);
-    if (isNaN(trip.tripDate)) {
-        return res.status(400).json({
-            error: 'Invalid trip date',
-        });
-    }
-
-    await addNewTrip(trip);
-    console.log(trip);
-    return res.status(201).json(trip);
 }
 
 async function httpDeleteTrip( req, res ) {

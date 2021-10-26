@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MONGO_URL = 'mongodb+srv://searove-api:9IrXTKBSC1ZmfFJC@searovecluster.cg7ox.mongodb.net/searove?retryWrites=true&w=majority'
+const MONGO_URL = process.env.MONGO_URL;
 
 // event emitter, that emits events when ready
 mongoose.connection.once('open', () => {

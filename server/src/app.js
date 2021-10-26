@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const { morganMiddleware } = require('./morgan/morgan');
+const decodeIDToken = require('./authenticateToken');
 
 const api = require('./routes/api');
 
@@ -14,6 +15,8 @@ const app = express();
 app.use(cors({
     origin: 'http://localhost:3000'
 }));
+
+app.use(decodeIDToken);
 
 app.use(morganMiddleware);
 app.use(morgan('tiny'));
