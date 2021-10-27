@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-<<<<<<< HEAD:client/src/components/trips-table/trips-table.component.jsx
 import './trips-table.styles.scss';
-=======
->>>>>>> df8d43e22b4fea6c179a438aa5c783cd5cf03eb6:client/src/components/trip-table/trip-table.component.jsx
 import { addTrip, getUserTrips } from '../../services/trip-services';
 import CustomButton from '../custom-button/custom-button.component';
 
