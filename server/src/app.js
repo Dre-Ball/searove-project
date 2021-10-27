@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 // security feature
-//const helmet = require('helmet');
+const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
 const { morganMiddleware } = require('./morgan/morgan');
@@ -11,7 +11,7 @@ const api = require('./routes/api');
 
 const app = express();
 
-//app.use(helmet());
+app.use(helmet());
 
 app.use(cors({
     origin: 'http://localhost:3000'
