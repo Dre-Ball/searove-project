@@ -43,31 +43,31 @@ class App extends React.Component {
           <Route exact path='/' component={HomePage} />
           <Route 
             exact
-            path='/trips'
+            path='/trips' 
             render={() => 
               this.props.currentUser ? (
                 <TripsPage />
               ) : (
                 <SignInAndRegisterPage />
               )
-            } 
-          />
+            }
+          /> 
           <Route 
-            exact 
+            exact
             path='/signin' 
             render={() => 
               this.props.currentUser ? (
-                <Redirect to='/trips' /> 
+                <Redirect to ='/trips' /> 
               ) : (
                 <SignInAndRegisterPage />
               )
             }
-          /> 
+          />
         </Switch>
       </div>
     );
   }
-}
+} 
 
 const mapStateToProps = ({ user }) => ({
   currentUser: user.currentUser

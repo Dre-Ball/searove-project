@@ -26,9 +26,16 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/v1', api);
+<<<<<<< HEAD
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
   });
 
+=======
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+  });
+  
+>>>>>>> df8d43e22b4fea6c179a438aa5c783cd5cf03eb6
 module.exports = app;
