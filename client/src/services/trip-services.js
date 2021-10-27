@@ -1,5 +1,4 @@
 import axios from 'axios';
-import fire from '../firebase/firebase.utils';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 const url = 'http://localhost:8080/v1/trips';
@@ -55,4 +54,3 @@ export const getUserTrips = async () => {
         console.error(error);
     }
 }
-

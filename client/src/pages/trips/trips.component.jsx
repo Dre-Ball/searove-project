@@ -1,11 +1,10 @@
 import React from 'react';
-
-import TripsTable from '../../components/trip-table/trip-table.component';
+import TripsTable from '../../components/trips-table/trips-table.component';
 
 import './trips.styles.scss';
 
 const TripsPage = () => {
-    return(
+    return (
         <TripsTable />
     )
 }
