@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import './trip-table.styles.scss';
-import data from './mock-data.json';
+import './trips-table.styles.scss';
 import { addTrip, getUserTrips } from '../../services/trip-services';
 import CustomButton from '../custom-button/custom-button.component';
 
 
 const TripsTable = () => {
 
-    const [ trips, setTrips ] = useState(data);
+    //const [ trips, setTrips ] = useState(data);
     const [ addFormData, setAddFormData ] = useState ({
         tripName: '',
         tripVolume: '',
@@ -72,8 +71,8 @@ const TripsTable = () => {
     }
     
     return( 
-        <div className="app-container">
-            <div>
+        <div>
+            <div className="app-container">
                 <table>
                     <thead>
                         <tr>
@@ -122,7 +121,7 @@ const TripsTable = () => {
                         placeholder="Trip Date"
                         required />
 
-                    <div className='buttons'>
+                    <div>
                         <CustomButton type="submit">Add Trip</CustomButton>
                     </div>
                 </form>
